@@ -26,12 +26,6 @@ module.exports = {
                 ]),
             );
 
-      const embed = new MessageEmbed()
-            .setColor("#f2740d")
-            .setTitle("result chosen")
-            .setURL("https://viso.to")
-            .setDescription("some description");
-
-      await inter.reply({ content: `StackOverflow results for "${query}":`, embeds: [embed], components: [row] });
+      await inter.reply({ content: `StackOverflow results for "${query}":`, components: [row] });
     },
 };
