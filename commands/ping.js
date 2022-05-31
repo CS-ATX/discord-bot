@@ -5,6 +5,7 @@ module.exports = {
         .setName('ping')
         .setDescription('Replies with Pong!'),
     async execute(inter) {
-        await inter.reply('Pong!');
+        const sent = await inter.reply({ content: "Pinging...", fetchReply: true });
+        inter.editReply(`Pong! (${sent.createdTimestamp - inter.createdTimestamp}ms)`);
     },
 };
