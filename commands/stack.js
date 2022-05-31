@@ -3,15 +3,22 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('stack')
-        .setDescription('Replies with suggested stackoverflow threads.'),
+        .setName("stack")
+        .setDescription("Replies with suggested stackoverflow threads.")
+        .addStringOption(option =>
+          option.setName("query")
+                .setDescription("The query sent to StackOverflow")
+                .setRequired(true)),
+
     async execute(inter) {
-        const query = "spread operator in javascript";
+        console.log(inter);
+        const query = inter.options.getString("query", true);
+
         const row = new MessageActionRow()
             .addComponents(
               new MessageSelectMenu()
                 .setCustomId("select")
-                .setPlaceholder("Nothing selected")
+                .setPlaceholder("Select a result")
                 .addOptions([
                   {
                     label: "title 1",
@@ -26,6 +33,6 @@ module.exports = {
                 ]),
             );
 
-      await inter.reply({ content: `StackOverflow results for "${query}":`, components: [row] });
+      await inter.reply({ content: `StackOverflow results for: \`${query}\``, components: [row] });
     },
 };
