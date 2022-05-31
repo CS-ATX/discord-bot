@@ -35,5 +35,13 @@ client.on("interactionCreate", async inter => {
   }
 });
 
-client.login(process.env.TOKEN);
+client.on("interactionCreate", async inter => {
+  if (!inter.isSelectMenu()) return;
 
+  if (inter.customId === "select") {
+    await inter.update({ content: "Something was selected!", components: [] });
+  }
+
+});
+
+client.login(process.env.TOKEN);
