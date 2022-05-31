@@ -39,7 +39,7 @@ client.on("interactionCreate", async inter => {
   if (!inter.isSelectMenu()) return;
 
   if (inter.customId === "select") {
-    await inter.update({ content: "Something was selected!", components: [] });
+    await inter.reply({ content: `https://stackoverflow.com/questions/${inter.values[0]}`, components: [] });
   }
 
 });
